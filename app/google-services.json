@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "342165895198",
+    "project_id": "composeplayground-23514c32",
+    "storage_bucket": "composeplayground-23514c32.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342165895198:android:11d71e06bf59def0cbd60f",
+        "android_client_info": {
+          "package_name": "com.example.glory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF6VZKaTJXFn1qGknPzhkwKgd3J-HmVU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
