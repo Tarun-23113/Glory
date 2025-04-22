@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.glory.R
 
 @Composable
 fun EditFlyerScreen(
@@ -41,7 +42,7 @@ fun EditFlyerScreen(
 
         // Flyer preview mockup image
         Image(
-            painter = painterResource(id = R.drawable.ic),
+            painter = painterResource(id = R.drawable.resizedimage),
             contentDescription = "Flyer Preview",
             modifier = Modifier
                 .fillMaxWidth()

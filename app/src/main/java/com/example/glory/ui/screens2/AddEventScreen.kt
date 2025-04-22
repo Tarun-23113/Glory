@@ -12,11 +12,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun AddEventScreen(
@@ -115,3 +115,29 @@ fun EventTypeSelector(selected: String, onSelected: (String) -> Unit) {
     }
 }
 
+//@Preview(showBackground = true)
+//@Composable
+//fun AddEventScreenPreview() {
+//    // Mock NavController to satisfy the parameter
+//    val fakeNavController = object : NavController(LocalContext.current) {}
+//
+//    // Use a fake ViewModel with dummy state for preview purposes
+//    val fakeViewModel = object : AddEventViewModel() {
+//        override var uiState = AddEventUiState(
+//            eventType = "Birthday",
+//            date = "2025-04-23",
+//            recipient = "Alice",
+//            message = "Wishing you joy and happiness!"
+//        )
+//    }
+//
+//    AddEventScreen(navController = fakeNavController, viewModel = fakeViewModel)
+//}
+
+@Preview(showBackground = true)
+@Composable
+fun AddEventScreenPreview() {
+    val navController = rememberNavController()
+
+    AddEventScreen(navController = navController)
+}
