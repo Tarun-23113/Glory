@@ -8,11 +8,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-//import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-//import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.rememberNavController
 import com.example.glory.navigation.Screen
 
 @Composable
@@ -28,17 +28,17 @@ fun VibeScreen(navController: NavHostController) {
     ) {
         Text("Pick a Vibe 🎨", fontSize = 24.sp, fontWeight = FontWeight.Bold)
         vibes.forEach { vibe ->
-            Button(onClick = { navController.navigate(Screen.Signup.route) }) {
+            Button(onClick = { navController.navigate(Screen.Welcome2.route) }) {
                 Text(text = vibe)
             }
         }
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun VibeScreenPreview() {
-//    VibeScreen(
-//        navController = rememberNavController()
-//    )
-//}
+@Preview(showBackground = true)
+@Composable
+fun VibeScreenPreview() {
+    VibeScreen(
+        navController = rememberNavController()
+    )
+}

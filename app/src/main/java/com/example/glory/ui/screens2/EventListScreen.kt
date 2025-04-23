@@ -1,6 +1,7 @@
 package com.example.glory.ui.screens2
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,19 +19,20 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.glory.data.model.EventData
+import com.example.glory.navigation.Screen
 
 @Composable
 fun EventListScreenContent(
     events: List<EventData>,
-    onAddEvent: () -> Unit,
     onPreview: (EventData) -> Unit,
     navController: NavController
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Brush.verticalGradient(listOf(Color(0xFFE0F7FA), Color(0xFFE8F5E9))))
-            .padding(16.dp)
+            .background(Brush.verticalGradient(listOf(Color(0xFFE0F7FA), Color(0xFFE8F5E9)))),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
     ) {
         Text("Your Events", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
 
@@ -41,7 +43,10 @@ fun EventListScreenContent(
         } else {
             LazyColumn {
                 items(events) { event ->
-                    EventCard(event = event, onPreview = { onPreview(event) })
+                    EventCard(event = event) {
+                        onPreview(event)
+                        navController.navigate(Screen.EditFlyerScreen.route + "/${event.id}")
+                    }
                     Spacer(modifier = Modifier.height(12.dp))
                 }
             }
@@ -50,33 +55,44 @@ fun EventListScreenContent(
         Spacer(modifier = Modifier.weight(1f))
 
         FloatingActionButton(
-            onClick = onAddEvent,
+            onClick = { navController.navigate(Screen.AddEventScreen.route) },
             containerColor = Color(0xFF00796B),
             contentColor = Color.White,
-            modifier = Modifier.align(Alignment.End)
+            modifier = Modifier
+                .align(Alignment.End)
+                .padding(16.dp)
         ) {
             Icon(Icons.Default.Add, contentDescription = "Add Event")
         }
     }
 }
 
-//@Composable
-//fun EventCard(event: EventData, onPreview: () -> Unit) {
-//    Card(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .clickable(onClick = onPreview),
-//        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-//    ) {
-//        Column(modifier = Modifier.padding(16.dp)) {
-//            Text(text = event.recipient, fontWeight = FontWeight.Bold)
-//            Spacer(modifier = Modifier.height(4.dp))
-//            Text(text = event.message)
-//            Spacer(modifier = Modifier.height(4.dp))
-//            Text(text = event.date, color = Color.Gray)
-//        }
-//    }
-//}
+@Composable
+fun EventCard(event: EventData, onPreview: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp)
+            .clickable(onClick = onPreview),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = event.recipient, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = event.message)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = event.date, color = Color.Gray)
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(
+                onClick = onPreview,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00796B)),
+                modifier = Modifier.align(Alignment.End)
+            ) {
+                Text("Preview Flyer", color = Color.White)
+            }
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
@@ -88,7 +104,6 @@ fun EventListScreenPreview() {
 
     EventListScreenContent(
         events = sampleEvents,
-        onAddEvent = {},
         onPreview = {},
         navController = rememberNavController()
     )

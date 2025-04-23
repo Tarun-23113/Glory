@@ -12,8 +12,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.glory.navigation.Screen
-//import androidx.compose.ui.tooling.preview.Preview
-//import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -33,17 +33,17 @@ fun LoginScreen(navController: NavHostController) {
         Button(onClick = { navController.navigate(Screen.Welcome3.route) }) {
             Text("Login →")
         }
-        TextButton(onClick = { navController.navigate(Screen.Signup.route) }) {
+        TextButton(onClick = { navController.navigate(Screen.SignupScreen.route) }) {
             Text("New? Sign up")
         }
     }
 }
 
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun LoginScreenPreview() {
-//    val mockNavController = rememberNavController()
-//    MaterialTheme {
-//        LoginScreen(navController = mockNavController)
-//    }
-//}
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun LoginScreenPreview() {
+    val mockNavController = rememberNavController()
+    MaterialTheme {
+        LoginScreen(navController = mockNavController)
+    }
+}

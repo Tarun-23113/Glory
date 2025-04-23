@@ -16,8 +16,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.CircleShape
 import com.example.glory.navigation.Screen
 
-//import androidx.compose.ui.tooling.preview.Preview
-//import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun ColorPickerScreen(navController: NavHostController) {
@@ -38,17 +38,17 @@ fun ColorPickerScreen(navController: NavHostController) {
                         .size(60.dp)
                         .clip(CircleShape)
                         .background(color)
-                        .clickable { navController.navigate(Screen.Vibe.route) }
+                        .clickable { navController.navigate(Screen.VibeScreen.route) }
                 )
             }
         }
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun ColorPickerScreenPreview() {
-//    ColorPickerScreen(
-//        navController = rememberNavController()
-//    )
-//}
+@Preview(showBackground = true)
+@Composable
+fun ColorPickerScreenPreview() {
+    ColorPickerScreen(
+        navController = rememberNavController()
+    )
+}

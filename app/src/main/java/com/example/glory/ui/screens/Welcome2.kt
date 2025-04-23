@@ -75,7 +75,7 @@ fun WelcomeSignup(name: String = "Lucifer", navController: NavController) {
             Spacer(modifier = Modifier.height(40.dp))
 
             Button(
-                onClick = {navController.navigate(Screen.Welcome.route)},
+                onClick = {navController.navigate(Screen.HomePageScreen.route)},
                 colors = ButtonDefaults.buttonColors(Color.Black),
                 shape = RoundedCornerShape(50),
                 modifier = Modifier

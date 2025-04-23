@@ -20,10 +20,13 @@ import com.example.glory.ui.theme.GloryTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.core.net.toUri
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShareFlyerScreen(
+    navController: NavController,
     flyerImageUrl: String,
     onBack: () -> Unit,
 ) {
@@ -101,6 +104,7 @@ fun PreviewShareFlyerScreen() {
     GloryTheme {
         ShareFlyerScreen(
             flyerImageUrl = "https://example.com/sample.jpg",
+            navController = rememberNavController(),
             onBack = {}
         )
     }

@@ -5,45 +5,50 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.glory.navigation.Screen.EventListScreen
+import com.example.glory.data.model.EventData
+import com.example.glory.data.model.User
 import com.example.glory.ui.screens.*
 import com.example.glory.ui.screens2.AddEventScreen
 import com.example.glory.ui.screens2.EditFlyerScreen
 import com.example.glory.ui.screens2.EventListScreenContent
+import com.example.glory.ui.screens2.HomePageScreen
+import com.example.glory.ui.screens2.ProfileViewEditScreen
+import com.example.glory.ui.screens2.ShareFlyerScreen
+import com.example.glory.ui.screens.LoginScreen
 
 @Composable
 fun AppNavGraph(navController: NavHostController = rememberNavController()) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = Screen.SplashScreen.route
     ) {
         // splash screen
-        composable(Screen.Splash.route) {
+        composable(Screen.SplashScreen.route) {
             SplashScreen(navController)
         }
 
         // welcome screen
-        composable(Screen.Welcome.route) {
+        composable(Screen.WelcomeScreen.route) {
             WelcomeScreen(navController)
         }
 
         // login screen
-        composable(Screen.Login.route) {
+        composable(Screen.LoginScreen.route) {
             LoginScreen(navController)
         }
 
         // signup screen
-        composable(Screen.Signup.route) {
+        composable(Screen.SignupScreen.route) {
             SignupScreen(navController)
         }
 
         // color sicker screen
-        composable(Screen.ColorPicker.route) {
+        composable(Screen.ColorPickerScreen.route) {
             ColorPickerScreen(navController)
         }
 
         // vibe selection screen
-        composable(Screen.Vibe.route) {
+        composable(Screen.VibeScreen.route) {
             VibeScreen(navController)
         }
 
@@ -57,22 +62,61 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
             WelcomeLogin(name = "Lucifer", navController = navController)
         }
 
+        //Home Screen
+        composable(Screen.HomePageScreen.route) {
+            // Define your event list here
+            val yourEventList = listOf(
+                EventData(id = "1", recipient = "Alice", message = "Happy B-day!", date = "2025-05-01", eventType = "Birthday"),
+                EventData(id = "2", recipient = "Bob", message = "Congrats!", date = "2025-05-02", eventType = "Anniversary")
+            )
+
+            // Pass the event list to HomePageScreen
+            HomePageScreen(
+                navController = navController,
+                username = "Sarah", // Or any username you'd like to use
+                events = yourEventList
+            )
+        }
+
+        //Event List Screen
+        composable(Screen.EventListScreen.route) {
+            EventListScreenContent(
+                navController = navController,
+                events = TODO(),
+                onPreview = TODO()
+            )
+        }
+
         //event adding screen
         composable(Screen.AddEventScreen.route) {
             AddEventScreen(navController = navController)
         }
 
         //editing auto generated flyer
-        composable("edit_flyer") {
+        composable(Screen.EditFlyerScreen.route) {
             EditFlyerScreen(navController = navController)
         }
 
-        composable("event_list") {
-            EventListScreenContent(
+        composable(Screen.ShareFlyerScreen.route){
+            ShareFlyerScreen(
                 navController = navController,
-                events = TODO(),
-                onAddEvent = TODO(),
-                onPreview = TODO()
+                flyerImageUrl = TODO(),
+                onBack = TODO()
+            )
+        }
+
+        composable(Screen.ProfileViewEditScreen.route) {
+            ProfileViewEditScreen(
+                user = User("John Doe", "john@example.com", ""),
+                onSaveProfile = { updatedUser ->
+                    // Handle save action
+                },
+                onLogout = {
+                    // Handle logout action
+                    navController.navigate(Screen.LoginScreen.route) {
+                        popUpTo(Screen.ProfileViewEditScreen.route) { inclusive = true }
+                    }
+                }
             )
         }
 

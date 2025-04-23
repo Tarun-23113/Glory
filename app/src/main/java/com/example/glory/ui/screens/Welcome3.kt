@@ -56,7 +56,7 @@ fun WelcomeLogin(name: String = "Lucifer", navController: NavController) {
 
             Button(
                 onClick = {
-                    navController.navigate(Screen.Welcome.route)
+                    navController.navigate(Screen.HomePageScreen.route)
                 },
                 colors = ButtonDefaults.buttonColors(Color.Black),
                 shape = RoundedCornerShape(50),

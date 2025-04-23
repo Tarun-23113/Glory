@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.example.glory.navigation.Screen
 
 @Composable
 fun AddEventScreen(
@@ -74,7 +75,7 @@ fun AddEventScreen(
         Button(
             onClick = {
                 viewModel.saveEvent {
-                    navController.navigate("flyer_preview")
+                    navController.navigate(Screen.EditFlyerScreen.route)
                 }
             },
             modifier = Modifier

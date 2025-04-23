@@ -28,11 +28,11 @@ fun WelcomeScreen(navController: NavHostController) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text("Glory", fontSize = 40.sp)
             Spacer(modifier = Modifier.height(32.dp))
-            Button(onClick = { navController.navigate(Screen.Login.route) }) {
+            Button(onClick = { navController.navigate(Screen.LoginScreen.route) }) {
                 Text("Login")
             }
             Spacer(modifier = Modifier.height(12.dp))
-            Button(onClick = { navController.navigate(Screen.Signup.route) }) {
+            Button(onClick = { navController.navigate(Screen.SignupScreen.route) }) {
                 Text("Sign Up")
             }
         }

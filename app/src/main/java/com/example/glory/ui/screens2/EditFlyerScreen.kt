@@ -19,6 +19,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.glory.R
+import com.example.glory.navigation.Screen
 
 @Composable
 fun EditFlyerScreen(
@@ -83,7 +84,7 @@ fun EditFlyerScreen(
             Button(
                 onClick = {
                     viewModel.saveEditedFlyer()
-                    navController.navigate("event_list") // or go back
+                    navController.navigate(Screen.ShareFlyerScreen.route) // or go back
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
             ) {
