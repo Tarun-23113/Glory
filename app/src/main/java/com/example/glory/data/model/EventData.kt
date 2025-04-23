@@ -5,5 +5,6 @@ data class EventData(
     val eventType: String = "",
     val date: String = "",
     val recipient: String = "",
-    val message: String = ""
+    val message: String = "",
+    val type: String = ""
 )

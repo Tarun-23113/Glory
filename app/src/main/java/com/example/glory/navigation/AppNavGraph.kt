@@ -5,10 +5,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.glory.navigation.Screen.EventListScreen
 import com.example.glory.ui.screens.*
 import com.example.glory.ui.screens2.AddEventScreen
 import com.example.glory.ui.screens2.EditFlyerScreen
-import com.example.glory.ui.screens2.EventListScreen
+import com.example.glory.ui.screens2.EventListScreenContent
 
 @Composable
 fun AppNavGraph(navController: NavHostController = rememberNavController()) {
@@ -51,20 +52,28 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
             WelcomeSignup(name = "Lucifer", navController = navController)
         }
 
+        //welcome screen on login
         composable(Screen.Welcome3.route) {
             WelcomeLogin(name = "Lucifer", navController = navController)
         }
 
-        composable("add_event") {
+        //event adding screen
+        composable(Screen.AddEventScreen.route) {
             AddEventScreen(navController = navController)
         }
 
+        //editing auto generated flyer
         composable("edit_flyer") {
             EditFlyerScreen(navController = navController)
         }
 
         composable("event_list") {
-            EventListScreen(navController = navController)
+            EventListScreenContent(
+                navController = navController,
+                events = TODO(),
+                onAddEvent = TODO(),
+                onPreview = TODO()
+            )
         }
 
     }

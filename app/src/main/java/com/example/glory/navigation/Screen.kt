@@ -9,5 +9,9 @@ sealed class Screen(val route: String) {
     object Vibe : Screen("vibe")
     object Welcome2 : Screen("signup_welcome")
     object Welcome3 : Screen("old_login")
+    object HomePageScreen : Screen("HomePage")
+    object EventListScreen : Screen("EventList")
+    object AddEventScreen : Screen("Add_event")
+    object EditFlyerScreen : Screen("edit_flyer")
     // more layers will be added
 }

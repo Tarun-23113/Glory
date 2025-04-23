@@ -14,16 +14,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import com.example.glory.data.model.Event
 import com.example.glory.data.model.EventData
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.*
 
 
-class EventListViewModel : ViewModel() {
+open class EventListViewModel : ViewModel() {
 
     private val _events = MutableStateFlow<List<EventData>>(emptyList())
-    val events: StateFlow<List<EventData>> = _events
+    open val events: MutableStateFlow<List<EventData>> = _events
 
     init {
         fetchEvents()
