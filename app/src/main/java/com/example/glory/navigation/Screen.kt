@@ -8,7 +8,7 @@ sealed class Screen(val route: String) {
     object ColorPickerScreen : Screen("color_picker")
     object VibeScreen : Screen("vibe")
     object Welcome2 : Screen("signup_welcome")
-    object Welcome3 : Screen("old_login")
+    object Welcome3 : Screen("login_welcome")
     object HomePageScreen : Screen("HomePage")
     object EventListScreen : Screen("EventList")
     object AddEventScreen : Screen("Add_event")
