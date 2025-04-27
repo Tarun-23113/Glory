@@ -16,6 +16,8 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.example.glory.navigation.Screen
 
 @Composable
@@ -43,15 +45,22 @@ fun SplashScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(Color(0xFF090909)),
         contentAlignment = Alignment.Center
     ) {
         Image(
             painter = logo,
             contentDescription = "App Logo",
             modifier = Modifier
-                .size(if (isInPreview) 900.dp else 700.dp)
+                .size(if (isInPreview) 1000.dp else 1000.dp)
                 .alpha(alphaAnim)
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SplashScreenPreview(){
+    val navController = rememberNavController()
+    SplashScreen(navController = navController)
 }
