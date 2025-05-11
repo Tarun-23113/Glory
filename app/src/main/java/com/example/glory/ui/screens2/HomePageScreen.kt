@@ -1,16 +1,14 @@
 package com.example.glory.ui.screens2
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.CalendarToday
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,10 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.glory.data.model.EventData
 import com.example.glory.ui.theme.GloryTheme
-
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.glory.navigation.Screen // adjust if your Screen file path differs
+import com.example.glory.navigation.Screen
 
 @Composable
 fun HomePageScreen(
@@ -79,7 +76,6 @@ fun HomePageScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Row with View All Button
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -87,7 +83,6 @@ fun HomePageScreen(
             ) {
                 Text("Upcoming Events", fontWeight = FontWeight.Bold, fontSize = 16.sp)
 
-                // 🧭 Navigation Button to Event List Screen
                 Button(
                     onClick = {
                         navController.navigate(Screen.EventListScreen.route)
@@ -106,7 +101,9 @@ fun HomePageScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(events) { event ->
-                    EventCard(event)
+                    EventItemCard(event = event, onClick = {
+                        navController.navigate(Screen.EventListScreen.route)
+                    })
                 }
             }
         }
@@ -114,11 +111,13 @@ fun HomePageScreen(
 }
 
 @Composable
-fun EventCard(event: EventData) {
+fun EventItemCard(event: EventData, onClick: () -> Unit = {}) {
     Card(
         colors = CardDefaults.cardColors(containerColor = Color(0xFFFFE4EE)),
         shape = RoundedCornerShape(16.dp),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() }
     ) {
         Row(
             modifier = Modifier
